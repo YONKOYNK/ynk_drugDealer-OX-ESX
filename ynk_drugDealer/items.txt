@@ -1,0 +1,43 @@
+	['turbozen'] = {
+		label = 'TurboZen pill',
+		stack = false,
+		weight = 10,
+		client = {
+			export = 'npc.turbozen',
+			image = 'turbozen.png',
+			usetime = 2500
+		}
+	},
+
+	['ragerush'] = {
+		label = 'RageRush pill',
+		stack = false,
+		weight = 10,
+		client = {
+			export = 'npc.ragerush',
+			image = 'ragerush.png',
+			usetime = 2500
+		}
+	},
+
+	['dreamweed'] = {
+		label = 'DreamWeed pill',
+		stack = false,
+		weight = 10,
+		client = {
+			export = 'npc.dreamweed',
+			image = 'dreamweed.png',
+			usetime = 2500
+		}
+	},
+
+	['nocturna'] = {
+		label = 'Nocturnapill',
+		stack = false,
+		weight = 10,
+		client = {
+			export = 'npc.nocturna',
+			image = 'nocturna.png',
+			usetime = 2500
+		}
+	},
