@@ -1,75 +1,132 @@
 ESX = exports['es_extended']:getSharedObject()
 
+
 exports('turbozen', function()
-    print('tu a pris de la turbozen')
-    lib.progressBar({duration = 2000, label = 'Turbozen', useWhileDead = false, canCancel = true, disable = {car = true,}, anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},}) 
+    TriggerServerEvent("ox_inventory:useItem", "turbozen")
+    TriggerEvent('ynk_drugDealer:useTurbozen')
+end)
+
+exports('ragerush', function()
+    TriggerServerEvent("ox_inventory:useItem", "ragerush")
+    TriggerEvent('ynk_drugDealer:useRageRush')
+end)
+
+exports('dreamweed', function()
+  TriggerServerEvent("ox_inventory:useItem", "dreamweed")
+    TriggerEvent('ynk_drugDealer:useDreamweed')
+end)
+
+exports('nocturna', function()
+  TriggerServerEvent("ox_inventory:useItem", "nocturna")
+    TriggerEvent('ynk_drugDealer:useNocturna')
+end)
+
+
+
+RegisterNetEvent('ynk_drugDealer:useTurbozen', function()
+    print('Tu as pris de la turbozen')
+
+    lib.progressBar({
+        duration = 2000,
+        label = 'Turbozen',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {car = true},
+        anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},
+    })
+
     local player = PlayerPedId()
     StartScreenEffect('DrugsTrevorClownsFight', 0, true)
     RequestAnimSet('move_m@buzzed')
     SetPedMovementClipset(player, "move_m@buzzed", 1.0)
 
-    Wait(60000)
+    Wait(Config.drugs[1].time)
 
     StopScreenEffect('DrugsTrevorClownsFight')
     ResetPedMovementClipset(player, 0.25)
 end)
 
-exports('ragerush', function()
-    print('tu a pris de la ragerush')
-    local player = PlayerPedId()
 
-    lib.progressBar({duration = 2000, label = 'Rage Rush', useWhileDead = false, canCancel = true, disable = {car = true,}, anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},})
+
+
+
+RegisterNetEvent('ynk_drugDealer:useRageRush', function()
+    print('Tu as pris de la ragerush')
+
+    local player = PlayerPedId()
+    lib.progressBar({
+        duration = 2000,
+        label = 'Rage Rush',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {car = true},
+        anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},
+    })
+
     local playerSpeed = GetEntitySpeed(player)
     StartScreenEffect('Dont_tazeme_bro', 0, true)
     RequestAnimSet('move_m@depressed@a')
     SetPedMovementClipset(player, 'move_m@depressed@a', 1.0)
     SetRunSprintMultiplierForPlayer(player, playerSpeed * 1.49)
 
-    Wait(6000)
+    Wait(Config.drugs[2].time)
 
     StopScreenEffect('Dont_tazeme_bro')
-    ResetPedMovementClipset(player, 0.25) 
+    ResetPedMovementClipset(player, 0.25)
 end)
 
-exports('dreamweed', function()
-    print('tu a pris de la dreamweed')
+RegisterNetEvent('ynk_drugDealer:useDreamweed', function()
+    print('Tu as pris de la dreamweed')
 
-    lib.progressBar({duration = 2000, label = 'Dream Weed', useWhileDead = false, canCancel = true, disable = {car = true,}, anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},})
+    lib.progressBar({
+        duration = 2000,
+        label = 'Dream Weed',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {car = true},
+        anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},
+    })
+
+    local ped = PlayerPedId()
     SetTimecycleModifier("DrugsMichaelAliensFight")
-    SetPedMotionBlur(PlayerPedId(), true)
+    SetPedMotionBlur(ped, true)
     ShakeGameplayCam("DRUNK_SHAKE", 1.0)
     StartScreenEffect("DMT_flight_intro", 0, false)
     RequestAnimSet("move_m@tool_belt@a")
-    SetPedMovementClipset(PlayerPedId(), "move_m@tool_belt@a", 1.0)
+    SetPedMovementClipset(ped, "move_m@tool_belt@a", 1.0)
 
-    Wait(15000)
+    Wait(Config.drugs[4].time)
 
     StopScreenEffect("DMT_flight_intro")
     ClearTimecycleModifier()
-    SetPedMotionBlur(PlayerPedId(), false)
+    SetPedMotionBlur(ped, false)
     StopGameplayCamShaking(false)
-    ResetPedMovementClipset(PlayerPedId(), 0.5)
-
+    ResetPedMovementClipset(ped, 0.5)
 end)
 
-
-exports('nocturna', function()
+RegisterNetEvent('ynk_drugDealer:useNocturna', function()
     print('Tu as pris de la nocturna')
 
     local ped = PlayerPedId()
+    lib.progressBar({
+        duration = 2000,
+        label = 'Nocturna',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {car = true},
+        anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},
+    })
 
-    lib.progressBar({duration = 2000, label = 'Nocturna', useWhileDead = false, canCancel = true, disable = {car = true,}, anim = {dict = 'mp_player_intdrink', clip = 'loop_bottle'},})
     SetTimecycleModifier("MP_corona_switch")
     StartScreenEffect("ExplosionJosh3", 0, true)
     ShakeGameplayCam("LARGE_EXPLOSION_SHAKE", 1.0)
 
-
     RequestAnimDict("move_crawl")
-    while not HasAnimDictLoaded("move_crawl") do
-        Citizen.Wait(100)
-    end
+    while not HasAnimDictLoaded("move_crawl") do Wait(100) end
+
     TaskPlayAnim(ped, "move_crawl", "onfront_fwd", 8.0, -8.0, -1, 1, 0, false, false, false)
-    Citizen.Wait(10000)
+
+    Wait(Config.drugs[3].time)
 
     StopGameplayCamShaking()
     StopScreenEffect("ExplosionJosh3")
