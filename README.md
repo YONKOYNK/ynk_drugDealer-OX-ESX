@@ -45,7 +45,7 @@ Assurez-vous d’avoir les ressources suivantes :
 1. **Placez le dossier du script** dans votre répertoire `resources/` (par ex. `resources/[local]/fivem_drogues`)
 2. Ajoutez cette ligne dans votre `server.cfg` :
    ```bash
-   ensure fivem_drogues
+   ensure ynk_drugDealer
 
 ---
 
