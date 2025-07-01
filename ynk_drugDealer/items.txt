@@ -1,43 +1,55 @@
-	['turbozen'] = {
-		label = 'TurboZen pill',
-		stack = false,
-		weight = 10,
-		client = {
-			export = 'npc.turbozen',
-			image = 'turbozen.png',
-			usetime = 2500
-		}
-	},
+---------------------------------------- pill drugs ----------------------------
+['turbozen'] = {
+    label = 'Turbozen',
+    weight = 200,
+    stack = true,
+    close = true,
+    usable = true, -- ← important
+    client = {
+        image = 'turbozen.png',
+		export = 'ynk_drugDealer.turbozen'
+		
+    },
+},
 
-	['ragerush'] = {
-		label = 'RageRush pill',
-		stack = false,
-		weight = 10,
-		client = {
-			export = 'npc.ragerush',
-			image = 'ragerush.png',
-			usetime = 2500
-		}
-	},
+['ragerush'] = {
+    label = 'Rage Rush',
+    weight = 1,
+    stack = 100,
+    close = true,
+    description = 'Une montée de rage',
+    client = {
+		image = 'ragerush.png',
+        export = 'ynk_drugDealer.ragerush'
+    },
+    consume = false,
+    usable = true
+},
 
-	['dreamweed'] = {
-		label = 'DreamWeed pill',
-		stack = false,
-		weight = 10,
-		client = {
-			export = 'npc.dreamweed',
-			image = 'dreamweed.png',
-			usetime = 2500
-		}
-	},
+['dreamweed'] = {
+    label = 'Dreamweed',
+    weight = 1,
+    stack = 100,
+    close = false,
+    description = 'Te plonge dans un rêve.',
+    client = {
+		image = 'dreamweed.png',
+        export = 'ynk_drugDealer.dreamweed'
+    },
+    consume = false,
+    usable = true
+},
 
-	['nocturna'] = {
-		label = 'Nocturnapill',
-		stack = false,
-		weight = 10,
-		client = {
-			export = 'npc.nocturna',
-			image = 'nocturna.png',
-			usetime = 2500
-		}
-	},
+['nocturna'] = {
+    label = 'Nocturna',
+    weight = 1,
+    stack = 100,
+    close = true,
+    description = 'Une descente nocturne',
+    client = {
+		image = 'nocturna.png',
+        export = 'ynk_drugDealer.nocturna'
+    },
+    consume = false,
+    usable = true
+},
