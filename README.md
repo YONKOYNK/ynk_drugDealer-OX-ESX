@@ -7,6 +7,7 @@ Ce script ajoute un système de drogues immersif et modulable pour votre serveur
 ## 📦 Fonctionnalités
 
 - ✅ Intégration complète avec `ox_inventory`
+- ✅ Intégration complète avec `ox_target`
 - ✅ Compatible ESX (`exports['es_extended']:getSharedObject()`)
 - ✅ Interface utilisateur via `ox_lib` (menus, progress bars, etc.)
 - ✅ 4 drogues personnalisées :
@@ -23,7 +24,7 @@ Ce script ajoute un système de drogues immersif et modulable pour votre serveur
 ## 👤 Interaction avec le PNJ
 Le joueur s’approche du dealer (coordonnées configurables)
 
-Appuie sur E pour ouvrir le menu
+Vise avec ox target 
 
 Choisit une drogue à acheter (confirmation requise)
 
@@ -34,6 +35,7 @@ L’item est ajouté à l’inventaire
 ## 🧾 Dépendances
 
 Assurez-vous d’avoir les ressources suivantes :
+- [ox_target](https://overextended.dev/ox_target)
 - [ox_inventory](https://overextended.dev/ox_inventory/)
 - [ox_lib](https://overextended.dev/ox_lib/)
 - [es_extended](https://github.com/esx-framework/es_extended)
