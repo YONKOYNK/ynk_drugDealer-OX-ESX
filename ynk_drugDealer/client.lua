@@ -40,7 +40,7 @@ RegisterNetEvent('ynk_drugDealer:useTurbozen', function()
     RequestAnimSet('move_m@buzzed')
     SetPedMovementClipset(player, "move_m@buzzed", 1.0)
 
-    Wait(Config.drugs[1].time)
+    Wait(60000)
 
     StopScreenEffect('DrugsTrevorClownsFight')
     ResetPedMovementClipset(player, 0.25)
@@ -69,7 +69,7 @@ RegisterNetEvent('ynk_drugDealer:useRageRush', function()
     SetPedMovementClipset(player, 'move_m@depressed@a', 1.0)
     SetRunSprintMultiplierForPlayer(player, playerSpeed * 1.49)
 
-    Wait(Config.drugs[2].time)
+    Wait(6000)
 
     StopScreenEffect('Dont_tazeme_bro')
     ResetPedMovementClipset(player, 0.25)
@@ -95,7 +95,7 @@ RegisterNetEvent('ynk_drugDealer:useDreamweed', function()
     RequestAnimSet("move_m@tool_belt@a")
     SetPedMovementClipset(ped, "move_m@tool_belt@a", 1.0)
 
-    Wait(Config.drugs[4].time)
+    Wait(15000)
 
     StopScreenEffect("DMT_flight_intro")
     ClearTimecycleModifier()
@@ -126,7 +126,7 @@ RegisterNetEvent('ynk_drugDealer:useNocturna', function()
 
     TaskPlayAnim(ped, "move_crawl", "onfront_fwd", 8.0, -8.0, -1, 1, 0, false, false, false)
 
-    Wait(Config.drugs[3].time)
+    Wait(10000)
 
     StopGameplayCamShaking()
     StopScreenEffect("ExplosionJosh3")
@@ -141,12 +141,12 @@ function giveItem(price, item, amount)
     {type = 'input', label = 'Confirmation', description = 'oui / non ', required = true, max = 3},
 })
  
-    local amount = tonumber(input[1])
-if not amount or input[2] == nil then
-    ESX.ShowNotification("Ajoute la quantité et confirme")
-elseif input[2]:lower() == 'oui' then
-    TriggerServerEvent('payDrugs', price, item, amount)
-end
+  local amount = tonumber(input[1])
+  if not amount or input[2] == nil then
+      ESX.ShowNotification("Ajoute la quantité et confirme")
+  elseif input[2]:lower() == 'oui' then
+      TriggerServerEvent('payDrugs', price, item, amount)
+  end
 
 end
 
@@ -208,18 +208,14 @@ local pedCreated = CreatePed(8, pedhash, pedPosition.x, pedPosition.y, pedPositi
 Wait(1000)
 FreezeEntityPosition(pedCreated, true)
 
-Citizen.CreateThread(function ()
-    local player = PlayerPedId()
-    while true do
-        Wait(0)
-        local playerPos = GetEntityCoords(player)
-        local distance = GetDistanceBetweenCoords(pedPosition.x, pedPosition.y, pedPosition.z, playerPos.x, playerPos.y, playerPos.z)
-        if not IsEntityDead(player) and not IsPedInAnyVehicle(player, false) then
-            if distance <= 1 and IsControlJustPressed(0, 38) then
-                print('tu vient douvrire le menu de drogue ')
-                lib.showContext("some_menu")
-
-            end
+exports.ox_target:addLocalEntity(pedCreated, {
+    {
+        name = 'open_drug_menu',
+        icon = 'fas fa-capsules',
+        label = 'Parler au dealer',
+        distance = 2.0,
+        onSelect = function(data)
+            lib.showContext("some_menu")
         end
-    end
-end)
+    }
+})
